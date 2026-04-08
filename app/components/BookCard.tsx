@@ -2,14 +2,17 @@
 
 import React from "react";
 import { Book } from "../lib/data";
+import { Heart } from "lucide-react";
 
 interface BookCardProps {
   book: Book;
+  isFavorite: boolean;
   onSelect: (book: Book) => void;
   onAddToCart: (book: Book) => void;
+  onToggleFavorite: (book: Book) => void;
 }
 
-export const BookCard: React.FC<BookCardProps> = ({ book, onSelect, onAddToCart }) => {
+export const BookCard: React.FC<BookCardProps> = ({ book, isFavorite, onSelect, onAddToCart, onToggleFavorite }) => {
   return (
     <div className="group flex flex-col justify-between overflow-hidden bg-transparent transition-all">
       {/* Cover Image */}
@@ -35,8 +38,21 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onSelect, onAddToCart 
         <p className="text-xs font-medium text-stone-400 font-sans tracking-wide">{book.author}</p>
       </div>
 
-      <div className="mt-4 flex items-center justify-between border-t border-stone-100 pt-4">
-        <span className="text-sm font-bold text-rust">${book.price.toFixed(2)}</span>
+      <div className="mt-4 flex flex-col gap-3 border-t border-stone-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-sm font-bold text-rust">${book.price.toFixed(2)}</span>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite(book);
+            }}
+            className="rounded-full p-2 transition-colors duration-200"
+            aria-label={isFavorite ? "ลบจากรายการโปรด" : "เพิ่มไปยังรายการโปรด"}
+          >
+            <Heart className={`h-5 w-5 transition-colors ${isFavorite ? "text-rust" : "text-stone-400 hover:text-rust"}`} />
+          </button>
+        </div>
+
         <button
           onClick={(e) => {
             e.stopPropagation();

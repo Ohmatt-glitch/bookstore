@@ -2,6 +2,9 @@
 
 import React from "react";
 import { ShoppingCart, Search } from "lucide-react";
+import Link from "next/link";
+import { useAuth } from "@/app/lib/useAuth";
+import { UserProfile } from "./UserProfile";
 
 interface NavbarProps {
   cartCount: number;
@@ -18,6 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedCategory, 
   onSelectCategory 
 }) => {
+  const { user } = useAuth();
   const categories = ["อีบุ๊ก", "หนังสือเสียง", "นิยาย", "หนังสือทั้งหมด"];
 
   return (
@@ -69,10 +73,28 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               )}
             </button>
-            <button className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust">เข้าสู่ระบบ</button>
-            <button className="rounded-full bg-rust px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-rust/90 transition-all shadow-sm">
-              สมัครสมาชิก
-            </button>
+
+            {user && (
+              <Link
+                href="/favorites"
+                className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust"
+              >
+                รายการโปรด
+              </Link>
+            )}
+            
+            {user ? (
+              <UserProfile />
+            ) : (
+              <>
+                <Link href="/login" className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust">
+                  เข้าสู่ระบบ
+                </Link>
+                <Link href="/signup" className="rounded-full bg-rust px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-rust/90 transition-all shadow-sm">
+                  สมัครสมาชิก
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

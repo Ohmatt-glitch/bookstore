@@ -6,11 +6,13 @@ import { BookCard } from "./BookCard";
 
 interface BookGridProps {
   books: Book[];
+  favoriteIds: number[];
   onSelect: (book: Book) => void;
   onAddToCart: (book: Book) => void;
+  onToggleFavorite: (book: Book) => void;
 }
 
-export const BookGrid: React.FC<BookGridProps> = ({ books, onSelect, onAddToCart }) => {
+export const BookGrid: React.FC<BookGridProps> = ({ books, favoriteIds, onSelect, onAddToCart, onToggleFavorite }) => {
   if (books.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
@@ -27,8 +29,10 @@ export const BookGrid: React.FC<BookGridProps> = ({ books, onSelect, onAddToCart
         <BookCard
           key={book.id}
           book={book}
+          isFavorite={favoriteIds.includes(book.id)}
           onSelect={onSelect}
           onAddToCart={onAddToCart}
+          onToggleFavorite={onToggleFavorite}
         />
       ))}
     </div>
