@@ -15,10 +15,10 @@ interface BookGridProps {
 export const BookGrid: React.FC<BookGridProps> = ({ books, favoriteIds, onSelect, onAddToCart, onToggleFavorite }) => {
   if (books.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-center">
+      <div className="flex flex-col items-center justify-center rounded-[2rem] border border-white/70 bg-white/80 p-12 text-center shadow-xl shadow-stone-200/40">
         <div className="mb-4 text-6xl opacity-20">📚</div>
-        <h3 className="text-xl font-bold text-stone-900">No books found</h3>
-        <p className="mt-2 text-stone-500">Try adjusting your search or filters.</p>
+        <h3 className="text-xl font-bold text-stone-900">ไม่พบหนังสือตามที่ค้นหา</h3>
+        <p className="mt-2 max-w-md text-stone-500">ลองปรับคำค้นหา หรือเลือกหมวดหมู่อื่นดูค่ะ</p>
       </div>
     );
   }

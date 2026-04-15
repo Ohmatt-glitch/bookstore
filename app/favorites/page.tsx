@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/app/lib/useAuth";
 import { useFirebase } from "@/app/lib/FirebaseContext";
@@ -18,6 +18,7 @@ export default function FavoritesPage() {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
   useEffect(() => {
@@ -48,7 +49,17 @@ export default function FavoritesPage() {
     return () => unsubscribe();
   }, [db, user]);
 
-  const favoriteBooks = books.filter((book) => favoriteIds.includes(book.id));
+  const favoriteBooks = useMemo(
+    () =>
+      books
+        .filter((book) => favoriteIds.includes(book.id))
+        .filter(
+          (book) =>
+            book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            book.author.toLowerCase().includes(searchQuery.toLowerCase())
+        ),
+    [favoriteIds, searchQuery]
+  );
 
   const showToast = (message: string, type: "success" | "error" = "success") => {
     setToast({ message, type });
@@ -124,7 +135,7 @@ export default function FavoritesPage() {
     <div className="min-h-screen bg-cream font-sans transition-colors duration-500">
       <Navbar
         cartCount={0}
-        onSearch={() => {}}
+        onSearch={setSearchQuery}
         onCartClick={() => {}}
         selectedCategory="หนังสือทั้งหมด"
         onSelectCategory={() => {}}
@@ -150,8 +161,14 @@ export default function FavoritesPage() {
           </div>
         ) : favoriteBooks.length === 0 ? (
           <div className="rounded-3xl bg-white p-16 text-center shadow-sm">
-            <p className="text-xl font-semibold text-stone-900">ยังไม่มีหนังสือโปรด</p>
-            <p className="mt-2 text-stone-500">เพิ่มหนังสือโปรดจากหน้าร้านเพื่อเก็บไว้ในที่เดียว</p>
+            <p className="text-xl font-semibold text-stone-900">
+              {searchQuery ? "ไม่พบหนังสือที่ตรงกับการค้นหา" : "ยังไม่มีหนังสือโปรด"}
+            </p>
+            <p className="mt-2 text-stone-500">
+              {searchQuery
+                ? "ลองปรับคำค้นหาอีกครั้ง หรือเคลียร์ช่องค้นหาเพื่อดูหนังสือโปรดทั้งหมด"
+                : "เพิ่มหนังสือโปรดจากหน้าร้านเพื่อเก็บไว้ในที่เดียว"}
+            </p>
             <Link
               href="/"
               className="mt-6 inline-block rounded-full bg-rust px-8 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-rust/90 transition-all"

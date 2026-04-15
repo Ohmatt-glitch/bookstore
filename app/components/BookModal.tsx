@@ -33,7 +33,7 @@ export const BookModal: React.FC<BookModalProps> = ({ book, isOpen, onClose, onA
 
         <div className="flex flex-col md:flex-row">
           {/* Left: Image with Soft Background */}
-          <div className="w-full md:w-5/12 bg-stone-50 p-8 sm:p-12 flex items-center justify-center border-r border-stone-100">
+          <div className="w-full md:w-5/12 bg-cream/90 p-8 sm:p-12 flex items-center justify-center border-r border-cream/70">
             <div className="relative aspect-[3/4] w-full max-w-[280px] overflow-hidden rounded-md shadow-2xl ring-1 ring-stone-200">
               <img
                 src={book.image}
@@ -66,7 +66,7 @@ export const BookModal: React.FC<BookModalProps> = ({ book, isOpen, onClose, onA
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 pt-6 border-t border-stone-50">
+              <div className="grid grid-cols-2 gap-8 pt-6 border-t border-cream/70">
                 <div>
                   <h3 className="mb-2 flex items-center gap-2 text-[8px] font-bold uppercase tracking-[0.15em] text-stone-300">
                     <Layers className="h-3 w-3" />

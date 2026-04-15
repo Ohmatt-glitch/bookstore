@@ -40,7 +40,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
       <div className="fixed inset-y-0 right-0 max-w-full pl-10">
         <div className="h-full w-screen max-w-sm transform transition-transform animate-in slide-in-from-right duration-500">
-          <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-2xl">
+          <div className="flex h-full flex-col overflow-y-scroll bg-cream/95 shadow-2xl">
             <div className="flex-1 overflow-y-auto px-6 py-8">
               <div className="flex items-start justify-between">
                 <div>
@@ -66,7 +66,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                    <div 
                      key={item.label}
                      className={`flex items-center justify-between rounded-md px-4 py-3 cursor-pointer transition-colors ${
-                       item.active ? "bg-stone-50 text-teal-heavy" : "text-stone-400 hover:bg-stone-50"
+                       item.active ? "bg-cream/90 text-teal-heavy" : "text-stone-400 hover:bg-cream/90"
                      }`}
                    >
                       <div className="flex items-center gap-4">
@@ -82,7 +82,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                  ))}
               </div>
 
-              <div className="mt-12 border-t border-stone-100 pt-8">
+              <div className="mt-12 border-t border-cream/70 pt-8">
                 {items.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-20 text-center">
                     <p className="text-xs font-bold uppercase tracking-widest text-stone-300">เงียบสงบ...</p>
@@ -91,7 +91,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <ul className="space-y-6">
                     {items.map((item) => (
                       <li key={item.book.id} className="flex gap-4">
-                        <div className="h-16 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-stone-100 shadow-sm">
+                        <div className="h-16 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-cream/80 shadow-sm">
                           <img
                             src={item.book.image}
                             alt={item.book.title}
@@ -136,7 +136,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             </div>
 
             {items.length > 0 && (
-              <div className="px-6 py-8 bg-white border-t border-stone-50">
+              <div className="px-6 py-8 bg-cream/95 border-t border-cream/70">
                  <div className="mb-6 flex justify-between items-baseline">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400">รวมทั้งหมด</span>
                     <span className="text-xl font-serif font-bold text-stone-900">${total.toFixed(2)}</span>

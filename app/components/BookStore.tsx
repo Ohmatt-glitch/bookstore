@@ -28,7 +28,7 @@ interface CartItem {
   quantity: number;
 }
 
-const PILLS = ["มาใหม่", "ได้รับรางวัล", "ของดีแนะนำ", "หายาก", "คลาสสิก"];
+const PILLS = ["หนังสือทั้งหมด", "มาใหม่", "ได้รับรางวัล", "ของดีแนะนำ", "หายาก", "คลาสสิก"];
 
 export const BookStore: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("หนังสือทั้งหมด");
@@ -252,7 +252,7 @@ export const BookStore: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream font-sans transition-colors duration-500">
+    <div className="relative min-h-screen bg-cream font-sans transition-colors duration-500 store-shell">
       <Navbar
         cartCount={totalCartItems}
         onSearch={setSearchQuery}
@@ -268,40 +268,79 @@ export const BookStore: React.FC = () => {
         onSelectCategory={setSelectedCategory}
       />
 
+      <div className="pointer-events-none absolute inset-x-0 top-40 -z-10 hidden lg:block">
+        <div className="absolute left-16 top-0 h-56 w-56 rounded-full bg-rust/10 blur-3xl" />
+        <div className="absolute right-24 top-24 h-48 w-48 rounded-full bg-teal-heavy/10 blur-3xl" />
+      </div>
+
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="section-surface rounded-[2rem] border border-cream/70 p-8 shadow-xl overflow-hidden">
+          <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
+            <div className="max-w-2xl">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-rust opacity-85">
+                ห้องอ่านของเรา
+              </p>
+              <h2 className="text-4xl font-serif font-bold tracking-tight text-stone-950 sm:text-5xl">
+                ร้านหนังสือที่อบอุ่นและเต็มไปด้วยเรื่องเล่า
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-stone-600">
+                คัดสรรหนังสือดีจากทุกแนว ทั้งนิยาย เสียง และอีบุ๊ก เพื่อมอบพื้นที่พักใจให้กับคนรักการอ่านและสร้างแรงบันดาลใจในทุกหน้ากระดาษ
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="glass-panel rounded-[1.75rem] p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-teal-heavy">คัดสรรพิเศษ</p>
+                <h3 className="mt-4 text-xl font-semibold text-stone-950">อ่านสบายในทุกวิถี</h3>
+                <p className="mt-3 text-sm leading-6 text-stone-600">พบหนังสือที่ตอบโจทย์ไลฟ์สไตล์ ทั้งอ่านผ่อนคลายและจุดประกายความคิด</p>
+              </div>
+              <div className="glass-panel rounded-[1.75rem] p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-rust">บริการลูกค้า</p>
+                <h3 className="mt-4 text-xl font-semibold text-stone-950">ส่งไวทั่วไทย</h3>
+                <p className="mt-3 text-sm leading-6 text-stone-600">สั่งวันนี้ พรุ่งนี้รับได้ทันใจ พร้อมห่อของขวัญสวยงาม</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Main Hero Carousel Section */}
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 mt-4">
         <AdCarousel />
       </section>
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-10 border-b border-stone-200 pb-8 flex flex-wrap items-center justify-between gap-4">
-          {/* Category Pills */}
-          <div className="flex flex-wrap gap-3">
-            {PILLS.map((pill) => (
-              <button
-                key={pill}
-                className={`rounded-full px-6 py-2 text-xs font-bold uppercase tracking-[0.2em] transition-all ${pill === "มาใหม่"
-                  ? "bg-pill-cyan text-teal-heavy"
-                  : "bg-stone-100 text-stone-400 hover:bg-stone-200"
-                  }`}
-              >
-                {pill}
-              </button>
-            ))}
+        <div className="section-surface rounded-[2rem] border border-cream/70 p-6 shadow-xl">
+          <div className="mb-10 border-b border-cream/70 pb-8 flex flex-wrap items-center justify-between gap-4">
+            {/* Category Pills */}
+            <div className="flex flex-wrap gap-3">
+              {PILLS.map((pill) => (
+                <button
+                  key={pill}
+                  onClick={() => setSelectedCategory(pill)}
+                  className={`rounded-full px-6 py-2 text-xs font-bold uppercase tracking-[0.2em] transition-all ${selectedCategory === pill
+                    ? "bg-rust/10 text-rust shadow-sm shadow-rust/10"
+                    : "bg-white/80 text-stone-500 hover:bg-white"
+                    }`}
+                >
+                  {pill}
+                </button>
+              ))}
+            </div>
+
+            <div className="text-xs font-bold uppercase tracking-widest text-stone-500">
+              {selectedCategory} — แสดงผลลัพธ์ {filteredBooks.length} รายการ
+            </div>
           </div>
 
-          <div className="text-xs font-bold uppercase tracking-widest text-stone-300">
-            {selectedCategory} — แสดงผลลัพธ์ {filteredBooks.length} รายการ
-          </div>
+          <BookGrid
+            books={filteredBooks}
+            favoriteIds={favoriteIds}
+            onSelect={handleSelectBook}
+            onAddToCart={addToCart}
+            onToggleFavorite={toggleFavorite}
+          />
         </div>
-
-        <BookGrid
-          books={filteredBooks}
-          favoriteIds={favoriteIds}
-          onSelect={handleSelectBook}
-          onAddToCart={addToCart}
-          onToggleFavorite={toggleFavorite}
-        />
       </main>
 
       {/* Overlays */}
@@ -345,7 +384,7 @@ export const BookStore: React.FC = () => {
       )}
 
       {/* Footer */}
-      <footer className="mt-24 border-t border-stone-200 bg-stone-100/50 py-16">
+      <footer className="mt-24 border-t border-cream/70 bg-cream/80 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>

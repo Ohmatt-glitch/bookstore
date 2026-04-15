@@ -47,7 +47,7 @@ export const AdCarousel: React.FC = () => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl shadow-stone-200 ring-1 ring-stone-100">
       <div
-        className="flex transition-transform duration-1000 cubic-bezier(0.4, 0, 0.2, 1)"
+        className="flex transition-transform duration-1000 ease-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {ADS.map((ad) => (
@@ -90,13 +90,13 @@ export const AdCarousel: React.FC = () => {
       <div className="absolute right-8 bottom-8 flex gap-3">
         <button
           onClick={prev}
-          className="rounded-full bg-stone-50 p-3 text-stone-900 shadow-md hover:bg-stone-100 transition-all border border-stone-100"
+          className="rounded-full bg-cream/90 p-3 text-stone-900 shadow-md hover:bg-cream transition-all border border-cream/70"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           onClick={next}
-          className="rounded-full bg-stone-50 p-3 text-stone-900 shadow-md hover:bg-stone-100 transition-all border border-stone-100"
+          className="rounded-full bg-cream/90 p-3 text-stone-900 shadow-md hover:bg-cream transition-all border border-cream/70"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
@@ -108,7 +108,7 @@ export const AdCarousel: React.FC = () => {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-1 rounded-full transition-all duration-500 ${current === i ? "w-12 bg-rust" : "w-4 bg-stone-200 hover:bg-stone-300"}`}
+            className={`h-1 rounded-full transition-all duration-500 ${current === i ? "w-12 bg-rust" : "w-4 bg-cream/80 hover:bg-cream/90"}`}
           />
         ))}
       </div>
