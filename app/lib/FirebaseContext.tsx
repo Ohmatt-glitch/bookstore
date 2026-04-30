@@ -1,10 +1,10 @@
 "use client";
 
 import { createContext, useContext, ReactNode } from "react";
-import app from "./firebase";
-import { getAuth, Auth } from "firebase/auth";
-import { getFirestore, Firestore } from "firebase/firestore";
-import { getStorage, FirebaseStorage } from "firebase/storage";
+import { getAuth as getFirebaseAuth, getDb as getFirebaseDb, getStorage as getFirebaseStorage, isConfigured } from "./firebase";
+import { Auth } from "firebase/auth";
+import { Firestore } from "firebase/firestore";
+import { FirebaseStorage } from "firebase/storage";
 
 interface FirebaseContextType {
   auth: Auth;
@@ -15,9 +15,19 @@ interface FirebaseContextType {
 const FirebaseContext = createContext<FirebaseContextType | undefined>(undefined);
 
 export function FirebaseProvider({ children }: { children: ReactNode }) {
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
+  // Only initialize Firebase services if configured
+  if (!isConfigured()) {
+    console.warn("Firebase not configured. Set environment variables.");
+    return (
+      <FirebaseContext.Provider value={{ auth: null as any, db: null as any, storage: null as any }}>
+        {children}
+      </FirebaseContext.Provider>
+    );
+  }
+
+  const auth = getFirebaseAuth();
+  const db = getFirebaseDb();
+  const storage = getFirebaseStorage();
 
   return (
     <FirebaseContext.Provider value={{ auth, db, storage }}>

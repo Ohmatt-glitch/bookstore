@@ -16,19 +16,60 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Check if all required config values are present
+const isFirebaseConfigured = () => {
+  return !!(
+    process.env.NEXT_PUBLIC_FIREBASE_API_KEY &&
+    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
+    process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  );
+};
 
-// Initialize Firebase Services
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-
-// Initialize Analytics (only in browser)
+// Lazy initialization to prevent build errors when env vars are missing
+let app: any = null;
+let auth: any = null;
+let db: any = null;
+let storage: any = null;
 let analytics: any = null;
-if (typeof window !== "undefined") {
-  analytics = getAnalytics(app);
-}
-export { analytics };
 
-export default app;
+const initializeFirebase = () => {
+  if (!isFirebaseConfigured()) {
+    console.warn("Firebase configuration missing. Set environment variables.");
+    return false;
+  }
+  
+  if (!app) {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    storage = getStorage(app);
+    
+    if (typeof window !== "undefined") {
+      analytics = getAnalytics(app);
+    }
+  }
+  return true;
+};
+
+// Export getters for lazy initialization
+export const getAuth = () => {
+  initializeFirebase();
+  return auth;
+};
+
+export const getDb = () => {
+  initializeFirebase();
+  return db;
+};
+
+export const getStorage = () => {
+  initializeFirebase();
+  return storage;
+};
+
+export const getAnalytics = () => {
+  initializeFirebase();
+  return analytics;
+};
+
+export const isConfigured = isFirebaseConfigured;
