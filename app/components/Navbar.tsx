@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedCategory, 
   onSelectCategory 
 }) => {
-  const { user } = useAuth();
+  const { user, isAdmin, logout } = useAuth();
   const categories = ["อีบุ๊ก", "หนังสือเสียง", "นิยาย", "หนังสือทั้งหมด"];
 
   return (
@@ -75,16 +75,34 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {user && (
+              <>
+                <Link
+                  href="/favorites"
+                  className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust"
+                >
+                  รายการโปรด
+                </Link>
+              </>
+            )}
+
+            {isAdmin && (
               <Link
-                href="/favorites"
+                href="/admin"
                 className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust"
               >
-                รายการโปรด
+                แดชบอร์ด
               </Link>
             )}
             
             {user ? (
               <UserProfile />
+            ) : isAdmin ? (
+              <button
+                onClick={logout}
+                className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust"
+              >
+                ออกจากระบบ
+              </button>
             ) : (
               <>
                 <Link href="/login" className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-rust">

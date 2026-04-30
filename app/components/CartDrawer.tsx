@@ -58,8 +58,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               {/* Sidebar Menu Style */}
               <div className="mt-8 space-y-1">
                  {[
-                   { icon: ShoppingBag, label: "ตะกร้า", active: true, count: items.length },
-                   { icon: Heart, label: "สิ่งที่อยากได้", active: false },
+                   { icon: "/image/superman2png.png", label: "ตะกร้า", active: true, count: items.length, isImage: true },
+                   { icon: "/image/superman_png.png", label: "สิ่งที่อยากได้", active: false, isImage: true },
                    { icon: Library, label: "ห้องสมุดของฉัน", active: false },
                    { icon: Settings, label: "ตั้งค่า", active: false },
                  ].map((item) => (

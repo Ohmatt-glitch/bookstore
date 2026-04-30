@@ -12,9 +12,13 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || "admin123";
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "123456a";
+
 export function useAuth() {
   const { auth } = useFirebase();
   const [user, setUser] = useState<User | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,6 +26,7 @@ export function useAuth() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setIsAdmin(false);
       setLoading(false);
     });
 
@@ -40,11 +45,18 @@ export function useAuth() {
     }
   };
 
-  // Sign in with email and password
-  const signin = async (email: string, password: string) => {
+  // Sign in with email and password or admin credentials
+  const signin = async (emailOrUsername: string, password: string) => {
     try {
       setError(null);
-      const result = await signInWithEmailAndPassword(auth, email, password);
+
+      if (emailOrUsername === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        setIsAdmin(true);
+        setUser(null);
+        return null;
+      }
+
+      const result = await signInWithEmailAndPassword(auth, emailOrUsername, password);
       return result.user;
     } catch (err: any) {
       setError(err.message);
@@ -69,6 +81,11 @@ export function useAuth() {
   const logout = async () => {
     try {
       setError(null);
+      if (isAdmin) {
+        setIsAdmin(false);
+        setUser(null);
+        return;
+      }
       await signOut(auth);
     } catch (err: any) {
       setError(err.message);
@@ -78,6 +95,7 @@ export function useAuth() {
 
   return {
     user,
+    isAdmin,
     loading,
     error,
     signup,

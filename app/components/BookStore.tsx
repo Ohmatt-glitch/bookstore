@@ -40,6 +40,8 @@ export const BookStore: React.FC = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const [remoteBooks, setRemoteBooks] = useState<Book[]>([]);
+  const [remoteBooksLoaded, setRemoteBooksLoaded] = useState(false);
 
   const router = useRouter();
   const { user } = useAuth();
@@ -63,6 +65,33 @@ export const BookStore: React.FC = () => {
 
     return () => unsubscribe();
   }, [db, user]);
+
+  useEffect(() => {
+    const booksRef = collection(db, "books");
+    const booksQuery = query(booksRef);
+
+    const unsubscribe = onSnapshot(booksQuery, (snapshot) => {
+      const firestoreBooks = snapshot.docs.map((docSnap) => {
+        const data = docSnap.data();
+        return {
+          id: Number(data.id) || Date.now(),
+          title: String(data.title || ""),
+          author: String(data.author || ""),
+          price: Number(data.price || 0),
+          category: (String(data.category || "นิยาย") as Book["category"]),
+          image: String(data.image || ""),
+          synopsis: String(data.synopsis || ""),
+          format: String(data.format || ""),
+          specs: String(data.specs || ""),
+        } as Book;
+      });
+
+      setRemoteBooks(firestoreBooks);
+      setRemoteBooksLoaded(true);
+    });
+
+    return () => unsubscribe();
+  }, [db]);
 
   useEffect(() => {
     if (!user) {
@@ -131,8 +160,12 @@ export const BookStore: React.FC = () => {
   };
 
   // Filtering Logic
+  const activeBooks = useMemo(() => {
+    return remoteBooksLoaded ? remoteBooks : books;
+  }, [remoteBooks, remoteBooksLoaded]);
+
   const filteredBooks = useMemo(() => {
-    return books.filter((book) => {
+    return activeBooks.filter((book) => {
       const matchesCategory =
         selectedCategory === "หนังสือทั้งหมด" || book.category === selectedCategory;
       const matchesSearch =
@@ -140,7 +173,7 @@ export const BookStore: React.FC = () => {
         book.author.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, activeBooks]);
 
   // Cart Logic
   const addToCart = async (book: Book) => {

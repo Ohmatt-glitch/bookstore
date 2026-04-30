@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Sparkles, BookOpen } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
 const ADS = [
   {
@@ -12,6 +12,7 @@ const ADS = [
     action: "เลือกดูทั้งหมด",
     color: "bg-rust",
     isPrimary: true,
+    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const ADS = [
     subtitle: "การสำรวจป่าโบราณที่หลงเหลือเป็นช่วงสุดท้าย และความลับที่มันเก็บซ่อนเอาไว้",
     action: "สั่งซื้อเดี๋ยวนี้",
     color: "bg-stone-800",
+    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const ADS = [
     subtitle: "เชื่อมต่อกับคนรักการอ่านและรับเนื้อหาสุดพิเศษทุกวันศุกร์",
     action: "เข้าร่วมฟรี",
     color: "bg-teal-heavy",
+    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
   },
 ];
 
@@ -75,11 +78,17 @@ export const AdCarousel: React.FC = () => {
               </div>
             </div>
 
-            {/* Abstract Decorative Element */}
+            {/* Book Cover Image */}
             <div className="hidden lg:flex w-1/3 items-center justify-center">
               <div className="relative">
                 <div className={`absolute -inset-4 rounded-full blur-3xl opacity-20 ${ad.color}`} />
-                <BookOpen className={`h-48 w-48 opacity-10 transition-colors ${ad.color.replace('bg-', 'text-')}`} />
+                <div className="relative w-40 h-56 rounded-lg shadow-2xl overflow-hidden bg-stone-100">
+                  <img 
+                    src={ad.image} 
+                    alt="Book cover"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
