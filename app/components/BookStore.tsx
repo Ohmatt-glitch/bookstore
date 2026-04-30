@@ -48,7 +48,7 @@ export const BookStore: React.FC = () => {
   const { db } = useFirebase();
 
   useEffect(() => {
-    if (!user) {
+    if (!db || !user) {
       setFavoriteIds([]);
       return;
     }
@@ -67,6 +67,8 @@ export const BookStore: React.FC = () => {
   }, [db, user]);
 
   useEffect(() => {
+    if (!db) return;
+    
     const booksRef = collection(db, "books");
     const booksQuery = query(booksRef);
 

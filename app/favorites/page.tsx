@@ -22,7 +22,7 @@ export default function FavoritesPage() {
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
   useEffect(() => {
-    if (!user) {
+    if (!db || !user) {
       setFavoriteIds([]);
       setIsLoading(false);
       return;

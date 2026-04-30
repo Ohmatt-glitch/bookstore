@@ -24,6 +24,12 @@ export function useAuth() {
 
   // Listen to auth state changes
   useEffect(() => {
+    // Skip if auth is not available (Firebase not configured)
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsAdmin(false);
@@ -35,6 +41,9 @@ export function useAuth() {
 
   // Sign up with email and password
   const signup = async (email: string, password: string) => {
+    if (!auth) {
+      throw new Error("Firebase not configured");
+    }
     try {
       setError(null);
       const result = await createUserWithEmailAndPassword(auth, email, password);
@@ -47,6 +56,9 @@ export function useAuth() {
 
   // Sign in with email and password or admin credentials
   const signin = async (emailOrUsername: string, password: string) => {
+    if (!auth) {
+      throw new Error("Firebase not configured");
+    }
     try {
       setError(null);
 
@@ -66,6 +78,9 @@ export function useAuth() {
 
   // Sign in with Google
   const signInWithGoogle = async () => {
+    if (!auth) {
+      throw new Error("Firebase not configured");
+    }
     try {
       setError(null);
       const provider = new GoogleAuthProvider();
@@ -85,6 +100,9 @@ export function useAuth() {
         setIsAdmin(false);
         setUser(null);
         return;
+      }
+      if (!auth) {
+        throw new Error("Firebase not configured");
       }
       await signOut(auth);
     } catch (err: any) {

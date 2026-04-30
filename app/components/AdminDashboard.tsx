@@ -48,7 +48,7 @@ export function AdminDashboard() {
   const categories: Book["category"][] = ["อีบุ๊ก", "หนังสือเสียง", "นิยาย"];
 
   useEffect(() => {
-    if (!isAdminLoggedIn) {
+    if (!isAdminLoggedIn || !db) {
       setIsLoadingBooks(false);
       return;
     }
