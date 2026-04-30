@@ -52,22 +52,22 @@ const initializeFirebase = () => {
 };
 
 // Export getters for lazy initialization
-export const getAuth = () => {
+export const getFirebaseAuth = () => {
   initializeFirebase();
   return auth;
 };
 
-export const getDb = () => {
+export const getFirebaseDb = () => {
   initializeFirebase();
   return db;
 };
 
-export const getStorage = () => {
+export const getFirebaseStorage = () => {
   initializeFirebase();
   return storage;
 };
 
-export const getAnalytics = () => {
+export const getFirebaseAnalytics = () => {
   initializeFirebase();
   return analytics;
 };

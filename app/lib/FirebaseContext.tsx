@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, ReactNode } from "react";
-import { getAuth as getFirebaseAuth, getDb as getFirebaseDb, getStorage as getFirebaseStorage, isConfigured } from "./firebase";
+import { getFirebaseAuth, getFirebaseDb, getFirebaseStorage, isConfigured } from "./firebase";
 import { Auth } from "firebase/auth";
 import { Firestore } from "firebase/firestore";
 import { FirebaseStorage } from "firebase/storage";
