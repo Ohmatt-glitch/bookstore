@@ -308,31 +308,31 @@ export const BookStore: React.FC = () => {
         <div className="absolute right-24 top-24 h-48 w-48 rounded-full bg-teal-heavy/10 blur-3xl" />
       </div>
 
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="section-surface rounded-[2rem] border border-cream/70 p-8 shadow-xl overflow-hidden">
-          <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
+      <section className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+        <div className="section-surface rounded-lg sm:rounded-[2rem] border border-cream/70 p-4 sm:p-8 shadow-lg sm:shadow-xl overflow-hidden">
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
             <div className="max-w-2xl">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-rust opacity-85">
+              <p className="mb-2 sm:mb-4 text-[10px] sm:text-xs font-bold uppercase tracking-[0.35em] text-rust opacity-85">
                 ห้องอ่านของเรา
               </p>
-              <h2 className="text-4xl font-serif font-bold tracking-tight text-stone-950 sm:text-5xl">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-stone-950">
                 ร้านหนังสือที่อบอุ่นและเต็มไปด้วยเรื่องเล่า
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-stone-600">
+              <p className="mt-2 sm:mt-4 max-w-2xl text-xs sm:text-base leading-6 sm:leading-8 text-stone-600">
                 คัดสรรหนังสือดีจากทุกแนว ทั้งนิยาย เสียง และอีบุ๊ก เพื่อมอบพื้นที่พักใจให้กับคนรักการอ่านและสร้างแรงบันดาลใจในทุกหน้ากระดาษ
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="glass-panel rounded-[1.75rem] p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-teal-heavy">คัดสรรพิเศษ</p>
-                <h3 className="mt-4 text-xl font-semibold text-stone-950">อ่านสบายในทุกวิถี</h3>
-                <p className="mt-3 text-sm leading-6 text-stone-600">พบหนังสือที่ตอบโจทย์ไลฟ์สไตล์ ทั้งอ่านผ่อนคลายและจุดประกายความคิด</p>
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
+              <div className="glass-panel rounded-lg sm:rounded-[1.75rem] p-3 sm:p-6">
+                <p className="text-[9px] sm:text-xs font-bold uppercase tracking-[0.24em] text-teal-heavy">คัดสรรมพิเศษ</p>
+                <h3 className="mt-2 sm:mt-4 text-base sm:text-xl font-semibold text-stone-950">อ่านสบายในทุกวิถี</h3>
+                <p className="mt-2 sm:mt-3 text-[11px] sm:text-sm leading-5 sm:leading-6 text-stone-600">พบหนังสือที่ตอบโจทย์ไลฟสไตล ทั้งอ่านผ่อนคลายและจุดประการความคิด</p>
               </div>
-              <div className="glass-panel rounded-[1.75rem] p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-rust">บริการลูกค้า</p>
-                <h3 className="mt-4 text-xl font-semibold text-stone-950">ส่งไวทั่วไทย</h3>
-                <p className="mt-3 text-sm leading-6 text-stone-600">สั่งวันนี้ พรุ่งนี้รับได้ทันใจ พร้อมห่อของขวัญสวยงาม</p>
+              <div className="glass-panel rounded-lg sm:rounded-[1.75rem] p-3 sm:p-6">
+                <p className="text-[9px] sm:text-xs font-bold uppercase tracking-[0.24em] text-rust">บริการลูกค้น</p>
+                <h3 className="mt-2 sm:mt-4 text-base sm:text-xl font-semibold text-stone-950">ส่งไวทั่วไทย</h3>
+                <p className="mt-2 sm:mt-3 text-[11px] sm:text-sm leading-5 sm:leading-6 text-stone-600">สั่งวันนี้ พรุ่งนี้รับได้ทันใจ พร้อมห่อของดำเนินสวยงาม</p>
               </div>
             </div>
           </div>
@@ -340,20 +340,20 @@ export const BookStore: React.FC = () => {
       </section>
 
       {/* Main Hero Carousel Section */}
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 mt-4">
+      <section className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 sm:px-6 lg:px-8 mt-3 sm:mt-4">
         <AdCarousel />
       </section>
 
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="section-surface rounded-[2rem] border border-cream/70 p-6 shadow-xl">
-          <div className="mb-10 border-b border-cream/70 pb-8 flex flex-wrap items-center justify-between gap-4">
+      <main className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+        <div className="section-surface rounded-lg sm:rounded-[2rem] border border-cream/70 p-4 sm:p-6 shadow-lg sm:shadow-xl">
+          <div className="mb-6 sm:mb-10 border-b border-cream/70 pb-4 sm:pb-8 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             {/* Category Pills */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               {PILLS.map((pill) => (
                 <button
                   key={pill}
                   onClick={() => setSelectedCategory(pill)}
-                  className={`rounded-full px-6 py-2 text-xs font-bold uppercase tracking-[0.2em] transition-all ${selectedCategory === pill
+                  className={`rounded-full px-3 sm:px-6 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] transition-all ${selectedCategory === pill
                     ? "bg-rust/10 text-rust shadow-sm shadow-rust/10"
                     : "bg-white/80 text-stone-500 hover:bg-white"
                     }`}
@@ -363,8 +363,8 @@ export const BookStore: React.FC = () => {
               ))}
             </div>
 
-            <div className="text-xs font-bold uppercase tracking-widest text-stone-500">
-              {selectedCategory} — แสดงผลลัพธ์ {filteredBooks.length} รายการ
+            <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-stone-500 ml-auto">
+              {selectedCategory} — {filteredBooks.length}
             </div>
           </div>
 

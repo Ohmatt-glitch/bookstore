@@ -12,13 +12,13 @@ interface CategoryNavProps {
 export const CategoryNav: React.FC<CategoryNavProps> = ({ selectedCategory, onSelect }) => {
   return (
     <div className="border-b border-stone-100 bg-stone-50/50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <ul className="flex flex-wrap items-center gap-1 py-1 sm:gap-2">
           {categories.map((category) => (
             <li key={category}>
               <button
                 onClick={() => onSelect(category)}
-                className={`flex h-10 items-center justify-center rounded-lg px-4 text-sm font-medium transition-all ${
+                className={`flex h-8 sm:h-10 items-center justify-center rounded-lg px-2 sm:px-4 text-[12px] sm:text-sm font-medium transition-all ${
                   selectedCategory === category
                     ? "bg-indigo-50 text-indigo-700 font-semibold ring-1 ring-inset ring-indigo-200"
                     : "text-stone-500 hover:bg-stone-100 hover:text-stone-900"

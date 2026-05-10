@@ -48,19 +48,19 @@ export const AdCarousel: React.FC = () => {
   const prev = () => setCurrent((prev) => (prev - 1 + ADS.length) % ADS.length);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl shadow-stone-200 ring-1 ring-stone-100">
+    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-lg sm:shadow-2xl shadow-stone-200 ring-1 ring-stone-100">
       <div
         className="flex transition-transform duration-1000 ease-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {ADS.map((ad) => (
-          <div key={ad.id} className="w-full flex-shrink-0 p-10 sm:p-16 lg:p-24 flex flex-col md:flex-row md:items-center justify-between gap-12 min-h-[400px]">
+          <div key={ad.id} className="w-full flex-shrink-0 p-4 sm:p-8 md:p-16 lg:p-24 flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8 md:gap-12 min-h-[300px] sm:min-h-[400px]">
             <div className="flex-1 max-w-2xl">
-              <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-rust opacity-70">
-                <Sparkles className="h-4 w-4" />
+              <div className="mb-3 sm:mb-4 flex items-center gap-2 text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-rust opacity-70">
+                <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
                 {ad.tag}
               </div>
-              <h2 className={`mb-6 font-serif font-bold leading-[1.1] text-stone-900 ${ad.isPrimary ? "text-5xl sm:text-7xl" : "text-4xl sm:text-6xl"}`}>
+              <h2 className={`mb-3 sm:mb-6 font-serif font-bold leading-[1.1] text-stone-900 ${ad.isPrimary ? "text-2xl sm:text-4xl md:text-5xl lg:text-7xl" : "text-xl sm:text-3xl md:text-4xl lg:text-6xl"}`}>
                 {ad.isPrimary ? (
                   <>
                     คัดสรรมาเพื่อการ<br />
@@ -68,11 +68,11 @@ export const AdCarousel: React.FC = () => {
                   </>
                 ) : ad.title}
               </h2>
-              <p className="max-w-md text-base sm:text-lg italic leading-relaxed text-stone-500 mb-8">
+              <p className="max-w-md text-xs sm:text-base md:text-lg italic leading-relaxed text-stone-500 mb-4 sm:mb-8">
                 {ad.subtitle}
               </p>
-              <div className="flex gap-4">
-                <button className={`rounded-full px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-xl transition-all hover:scale-105 active:scale-95 ${ad.color}`}>
+              <div className="flex gap-3 sm:gap-4">
+                <button className={`rounded-full px-6 sm:px-10 py-2 sm:py-4 text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg sm:shadow-xl transition-all hover:scale-105 active:scale-95 ${ad.color}`}>
                   {ad.action}
                 </button>
               </div>

@@ -43,122 +43,122 @@ export const CheckoutFlow: React.FC<CheckoutFlowProps> = ({ total, isOpen, onClo
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-300">
+      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-lg sm:shadow-2xl animate-in fade-in zoom-in-95 duration-300">
         {step < 3 && (
           <button 
             onClick={onClose}
-            className="absolute right-6 top-6 z-10 text-stone-400 hover:text-stone-600 transition-colors"
+            className="absolute right-4 sm:right-6 top-4 sm:top-6 z-10 text-stone-400 hover:text-stone-600 transition-colors"
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
         )}
 
-        <div className="p-8 sm:p-10">
+        <div className="p-4 sm:p-8 md:p-10">
           {/* Header */}
           {step < 3 && (
-            <div className="mb-8">
-              <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-indigo-600">
-                <ShieldCheck className="h-4 w-4" />
-                กระบวนการชำระเงินที่ปลอดภัย
+            <div className="mb-6 sm:mb-8">
+              <div className="mb-2 flex items-center gap-2 text-[8px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600">
+                <ShieldCheck className="h-3 w-3 sm:h-4 sm:w-4" />
+                กระบวนการปลอดภัย
               </div>
-              <h2 className="text-2xl font-bold text-stone-900">
-                {step === 1 ? "รายละเอียดการเรียกเก็บเงิน" : "วิธีการชำระเงิน"}
+              <h2 className="text-lg sm:text-2xl font-bold text-stone-900">
+                {step === 1 ? "รายละเอียดการเรียกเก็บ" : "วิธีการชำระเงิน"}
               </h2>
             </div>
           )}
 
           {/* Stepper */}
           {step < 3 && (
-             <div className="mb-10 flex items-center gap-2">
-                <div className={`h-2 flex-1 rounded-full ${step >= 1 ? "bg-indigo-600" : "bg-stone-200"}`} />
-                <div className={`h-2 flex-1 rounded-full ${step >= 2 ? "bg-indigo-600" : "bg-stone-200"}`} />
-                <div className={`h-2 flex-1 rounded-full ${step >= 3 ? "bg-indigo-600" : "bg-stone-200"}`} />
+             <div className="mb-6 sm:mb-10 flex items-center gap-2">
+                <div className={`h-1.5 sm:h-2 flex-1 rounded-full ${step >= 1 ? "bg-indigo-600" : "bg-stone-200"}`} />
+                <div className={`h-1.5 sm:h-2 flex-1 rounded-full ${step >= 2 ? "bg-indigo-600" : "bg-stone-200"}`} />
+                <div className={`h-1.5 sm:h-2 flex-1 rounded-full ${step >= 3 ? "bg-indigo-600" : "bg-stone-200"}`} />
              </div>
           )}
 
           {/* Step 1: Info */}
           {step === 1 && (
-            <div className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-3 sm:space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-stone-500 uppercase">ชื่อ</label>
-                  <input type="text" className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-indigo-500" placeholder="John" />
+                  <label className="text-[8px] sm:text-xs font-bold text-stone-500 uppercase">ชื่อ</label>
+                  <input type="text" className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm focus:border-indigo-500" placeholder="John" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-stone-500 uppercase">นามสกุล</label>
-                  <input type="text" className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-indigo-500" placeholder="Doe" />
+                  <label className="text-[8px] sm:text-xs font-bold text-stone-500 uppercase">นามสกุล</label>
+                  <input type="text" className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm focus:border-indigo-500" placeholder="Doe" />
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-xs font-bold text-stone-500 uppercase">ที่อยู่อีเมล</label>
-                <input type="email" className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-indigo-500" placeholder="john@example.com" />
+                <label className="text-[8px] sm:text-xs font-bold text-stone-500 uppercase">อีเมล</label>
+                <input type="email" className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm focus:border-indigo-500" placeholder="john@example.com" />
               </div>
               <div className="space-y-1">
-                <label className="text-xs font-bold text-stone-500 uppercase">ที่อยู่สำหรับจัดส่ง</label>
-                <textarea className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-indigo-500" placeholder="123 Cozy Lane..." rows={2} />
+                <label className="text-[8px] sm:text-xs font-bold text-stone-500 uppercase">ที่อยู่จัดส่ง</label>
+                <textarea className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm focus:border-indigo-500" placeholder="123 Cozy Lane..." rows={2} />
               </div>
             </div>
           )}
 
           {/* Step 2: Payment */}
           {step === 2 && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-              <div className="flex flex-col gap-3">
+            <div className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
+              <div className="flex flex-col gap-2 sm:gap-3">
                 <button
                   onClick={() => setPaymentMethod("card")}
-                  className={`flex items-center justify-between rounded-2xl border-2 p-4 transition-all ${
+                  className={`flex items-center justify-between rounded-lg sm:rounded-2xl border-2 p-3 sm:p-4 transition-all ${
                     paymentMethod === "card" ? "border-indigo-600 bg-indigo-50/50" : "border-stone-100 hover:border-stone-200"
                   }`}
                 >
-                  <div className="flex items-center gap-4">
-                     <div className={`rounded-xl p-3 ${paymentMethod === "card" ? "bg-indigo-600 text-white" : "bg-stone-100 text-stone-400"}`}>
-                        <CreditCard className="h-6 w-6" />
+                  <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                     <div className={`flex-shrink-0 rounded-lg sm:rounded-xl p-1.5 sm:p-3 ${paymentMethod === "card" ? "bg-indigo-600 text-white" : "bg-stone-100 text-stone-400"}`}>
+                        <CreditCard className="h-4 w-4 sm:h-6 sm:w-6" />
                      </div>
-                     <div className="text-left">
-                        <p className="font-bold text-stone-900">บัตรเครดิต</p>
-                        <p className="text-xs text-stone-500">ชำระเงินอย่างปลอดภัยผ่าน Stripe</p>
+                     <div className="text-left min-w-0">
+                        <p className="font-bold text-sm sm:text-base text-stone-900 line-clamp-1">บัตรเครดิต</p>
+                        <p className="text-[8px] sm:text-xs text-stone-500 line-clamp-1">ชำระเงินมงผ่าน Stripe</p>
                      </div>
                   </div>
-                  <div className={`h-5 w-5 rounded-full border-2 border-stone-200 flex items-center justify-center ${paymentMethod === "card" ? "border-indigo-600" : ""}`}>
-                     {paymentMethod === "card" && <div className="h-2.5 w-2.5 rounded-full bg-indigo-600" />}
+                  <div className={`h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 rounded-full border-2 border-stone-200 flex items-center justify-center ${paymentMethod === "card" ? "border-indigo-600" : ""}`}>
+                     {paymentMethod === "card" && <div className="h-1.5 sm:h-2.5 w-1.5 sm:w-2.5 rounded-full bg-indigo-600" />}
                   </div>
                 </button>
 
                 <button
                   onClick={() => setPaymentMethod("qr")}
-                  className={`flex items-center justify-between rounded-2xl border-2 p-4 transition-all ${
+                  className={`flex items-center justify-between rounded-lg sm:rounded-2xl border-2 p-3 sm:p-4 transition-all ${
                     paymentMethod === "qr" ? "border-indigo-600 bg-indigo-50/50" : "border-stone-100 hover:border-stone-200"
                   }`}
                 >
-                  <div className="flex items-center gap-4">
-                     <div className={`rounded-xl p-3 ${paymentMethod === "qr" ? "bg-indigo-600 text-white" : "bg-stone-100 text-stone-400"}`}>
-                        <QrCode className="h-6 w-6" />
+                  <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                     <div className={`flex-shrink-0 rounded-lg sm:rounded-xl p-1.5 sm:p-3 ${paymentMethod === "qr" ? "bg-indigo-600 text-white" : "bg-stone-100 text-stone-400"}`}>
+                        <QrCode className="h-4 w-4 sm:h-6 sm:w-6" />
                      </div>
-                     <div className="text-left">
-                        <p className="font-bold text-stone-900">โอนเงินผ่านคิวอาร์โค้ด</p>
-                        <p className="text-xs text-stone-500">สแกนรหัสด้วยแอปธนาคาร</p>
+                     <div className="text-left min-w-0">
+                        <p className="font-bold text-sm sm:text-base text-stone-900 line-clamp-1">โอนเงินผ่าน QR Code</p>
+                        <p className="text-[8px] sm:text-xs text-stone-500 line-clamp-1">สแกนรหัสด้วยแอปธนาคาร</p>
                      </div>
                   </div>
-                  <div className={`h-5 w-5 rounded-full border-2 border-stone-200 flex items-center justify-center ${paymentMethod === "qr" ? "border-indigo-600" : ""}`}>
-                     {paymentMethod === "qr" && <div className="h-2.5 w-2.5 rounded-full bg-indigo-600" />}
+                  <div className={`h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 rounded-full border-2 border-stone-200 flex items-center justify-center ${paymentMethod === "qr" ? "border-indigo-600" : ""}`}>
+                     {paymentMethod === "qr" && <div className="h-1.5 sm:h-2.5 w-1.5 sm:w-2.5 rounded-full bg-indigo-600" />}
                   </div>
                 </button>
               </div>
 
               {paymentMethod === "card" ? (
-                <div className="space-y-3">
-                   <input type="text" className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm" placeholder="หมายเลขบัตร" />
-                   <div className="grid grid-cols-2 gap-4">
-                      <input type="text" className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm" placeholder="MM/YY" />
-                      <input type="text" className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm" placeholder="CVC" />
+                <div className="space-y-2 sm:space-y-3">
+                   <input type="text" className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm" placeholder="หมายเลขบัตร" />
+                   <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                      <input type="text" className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm" placeholder="MM/YY" />
+                      <input type="text" className="w-full rounded-lg sm:rounded-xl border border-stone-200 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm" placeholder="CVC" />
                    </div>
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center py-4 bg-stone-50 rounded-2xl border border-stone-100 border-dashed">
-                   <div className="h-32 w-32 bg-white rounded-xl shadow-lg border-2 border-stone-100 flex items-center justify-center mb-2">
-                       <QrCode className="h-24 w-24 text-stone-800" />
+                <div className="flex flex-col items-center justify-center py-3 sm:py-4 bg-stone-50 rounded-lg sm:rounded-2xl border border-stone-100 border-dashed">
+                   <div className="h-24 w-24 sm:h-32 sm:w-32 bg-white rounded-lg sm:rounded-xl shadow-lg border-2 border-stone-100 flex items-center justify-center mb-2 sm:mb-3">
+                       <QrCode className="h-16 w-16 sm:h-24 sm:w-24 text-stone-800" />
                    </div>
-                   <p className="text-xs text-stone-400 font-medium">สแกนเพื่อชำระเงิน ${total.toFixed(2)}</p>
+                   <p className="text-[8px] sm:text-xs text-stone-400 font-medium">สแกนเพื่อชำระเงิน ${total.toFixed(2)}</p>
                 </div>
               )}
             </div>
@@ -166,15 +166,15 @@ export const CheckoutFlow: React.FC<CheckoutFlowProps> = ({ total, isOpen, onClo
 
           {/* Step 3: Success */}
           {step === 3 && (
-            <div className="flex flex-col items-center justify-center text-center py-10 animate-in zoom-in-50 duration-500">
-               <div className="mb-6 rounded-full bg-emerald-100 p-6 text-emerald-600">
-                  <CheckCircle2 className="h-16 w-16" />
+            <div className="flex flex-col items-center justify-center text-center py-6 sm:py-10 animate-in zoom-in-50 duration-500">
+               <div className="mb-3 sm:mb-6 rounded-full bg-emerald-100 p-4 sm:p-6 text-emerald-600">
+                  <CheckCircle2 className="h-12 w-12 sm:h-16 sm:w-16" />
                </div>
-               <h2 className="mb-2 text-3xl font-bold text-stone-900">การชำระเงินสำเร็จ!</h2>
-               <p className="text-lg text-stone-500">
+               <h2 className="mb-1 sm:mb-2 text-xl sm:text-3xl font-bold text-stone-900">การชำระเงินสำเร็จ!</h2>
+               <p className="text-xs sm:text-lg text-stone-500">
                   ขอบคุณสำหรับการสั่งซื้อ เราได้ส่งใบเสร็จไปที่อีเมลของคุณแล้ว
                </p>
-               <p className="mt-8 text-sm text-stone-400">
+               <p className="mt-4 sm:mt-8 text-[10px] sm:text-sm text-stone-400">
                   กำลังกลับไปยังหน้าร้านหนังสือ...
                </p>
             </div>
@@ -182,34 +182,34 @@ export const CheckoutFlow: React.FC<CheckoutFlowProps> = ({ total, isOpen, onClo
 
           {/* Footer Actions */}
           {step < 3 && (
-            <div className="mt-10 flex items-center justify-between pt-8 border-t border-stone-100">
+            <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pt-4 sm:pt-8 border-t border-stone-100">
                <div className="flex flex-col">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">ราคารวม</span>
-                  <span className="text-2xl font-bold text-stone-950">${total.toFixed(2)}</span>
+                  <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider text-stone-400">ราคารวม</span>
+                  <span className="text-lg sm:text-2xl font-bold text-stone-950">${total.toFixed(2)}</span>
                </div>
-               <div className="flex gap-2">
+               <div className="flex gap-2 w-full sm:w-auto">
                   {step > 1 && (
                     <button 
                       onClick={handleBack}
-                      className="flex h-12 w-12 items-center justify-center rounded-xl bg-stone-100 text-stone-500 hover:bg-stone-200 transition-all"
+                      className="flex h-10 sm:h-12 w-10 sm:w-12 flex-shrink-0 items-center justify-center rounded-lg sm:rounded-xl bg-stone-100 text-stone-500 hover:bg-stone-200 transition-all"
                     >
-                      <ArrowLeft className="h-5 w-5" />
+                      <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                     </button>
                   )}
                   <button 
                     onClick={handleNext}
                     disabled={isProcessing}
-                    className="flex items-center gap-2 rounded-xl bg-indigo-600 px-8 py-3 font-bold text-white shadow-lg shadow-indigo-100 transition-all hover:bg-indigo-700 hover:shadow-indigo-200 disabled:opacity-50"
+                    className="flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-lg sm:rounded-xl bg-indigo-600 px-3 sm:px-8 py-2 sm:py-3 font-bold text-xs sm:text-base text-white shadow-lg shadow-indigo-100 transition-all hover:bg-indigo-700 hover:shadow-indigo-200 disabled:opacity-50"
                   >
                     {isProcessing ? (
                        <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                        กำลังดำเนินการ...
+                        <Loader2 className="h-3 w-3 sm:h-5 sm:w-5 animate-spin" />
+                        <span className="hidden sm:inline">กำลังดำเนินการ...</span>
                        </>
                     ) : (
                       <>
-                        {step === 1 ? "ขั้นตอนถัดไป" : "ชำระเงินตอนนี้"}
-                        <ArrowRight className="h-5 w-5" />
+                        <span>{step === 1 ? "ขั้นตอนถัดไป" : "ชำระเงินตอนนี้"}</span>
+                        <ArrowRight className="h-3 w-3 sm:h-5 sm:w-5" />
                       </>
                     )}
                   </button>
